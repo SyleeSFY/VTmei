@@ -36,3 +36,10 @@ bin/
 **/scopedcss/
 **/Razor/
 
+
+# Rider IDE files
+*.sln.iml
+*.csproj.iml
+rider.project.restore.info
+.idea/
+
