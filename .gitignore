@@ -1,0 +1,13 @@
+# Blazor WebAssembly build files
+wwwroot/_framework/Client.Core.*.wasm
+wwwroot/_framework/Client.Core.*.pdb
+wwwroot/_framework/dotnet.*.js
+wwwroot/_framework/dotnet.*.wasm
+
+# Standard .NET ignores
+bin/
+obj/
+*.user
+*.suo
+*.vscode/
+.vs/
