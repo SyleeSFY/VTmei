@@ -1,19 +1,10 @@
 @inherits LayoutComponentBase
 
 <div class="authorization-layout">
-    @Body
+    <NavMenu/>
+    <main>
+        <article class="content">
+            @Body
+        </article>
+    </main>
 </div>
-
-<style>
-    .authorization-layout {
-        background: #ffffff;
-        min-height: 100vh;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    
-    body {
-        background: #ffffff !important;
-    }
-</style>
