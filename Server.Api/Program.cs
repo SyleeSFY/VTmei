@@ -1,0 +1,58 @@
+using Microsoft.EntityFrameworkCore;
+using Server.DLL.Context.ApplicationDbContext;
+using Server.DLL.Interfaces;
+using Server.DLL.Repositories;
+using Server.BLL.Services;
+using Server.BLL.Services.Inrerfaces;
+
+namespace Server.Api;
+
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+        
+        builder.Services.AddAuthorization();
+        builder.Services.AddOpenApi();
+        builder.Services.AddControllers();
+        
+        // CORS для Blazor WASM
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowBlazorWasm", policy =>
+            {
+                policy.WithOrigins(
+                        "https://localhost:5001", 
+                        "http://localhost:5000",
+                        "https://localhost:7001", 
+                        "http://localhost:3000",
+                        "http://localhost:5125") // Blazor Client
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
+        
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+        
+        builder.Services.AddScoped<IEducatorRepository, EducatorRepository>();
+        builder.Services.AddScoped<IEducatorService, EducatorService>();
+
+        var app = builder.Build();
+        
+        if (app.Environment.IsDevelopment())
+        {
+            app.MapOpenApi();
+        }
+
+        // УБИРАЕМ HTTPS редирект если используем HTTP
+        // app.UseHttpsRedirection();
+        
+        app.UseCors("AllowBlazorWasm");
+        app.UseAuthorization();
+
+        app.MapControllers(); 
+        await app.RunAsync();
+    }
+}

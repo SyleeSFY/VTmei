@@ -1,8 +1,29 @@
-@page "/Contacts"
-@layout MainLayout
+@page "/contacts"
+@inject HttpClient Http
 
-<h3>Contacts</h3>
+<h3 style="margin-top: 100px">Контакты</h3>
 
-@code {
-    
+<button @onclick="GetEducator" class="btn btn-primary">Получить преподавателя</button>
+
+@if (isLoading)
+{
+    <p>Загрузка...</p>
+}
+else if (educator != null)
+{
+    <div style="margin-top: 20px">
+        <p>ID: @educator.Id</p>
+        <p>ФИО: @educator.FullName</p>
+        <p>Степень: @educator.AcademicDegree</p>
+        @if (educator.Image != null && educator.Image.Length > 0)
+        {
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(educator.Image)" 
+                 alt="@educator.FullName" 
+                 style="max-width: 200px; max-height: 200px;" />
+        }
+    </div>
+}
+else if (errorMessage != null)
+{
+    <p style="color: red;">Ошибка: @errorMessage</p>
 }

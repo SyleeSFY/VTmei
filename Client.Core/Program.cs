@@ -11,4 +11,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+//todo: засунуть потом это в appsetings
+builder.Services.AddScoped(sp => 
+    new HttpClient 
+    { 
+        BaseAddress = new Uri("http://localhost:5129/")
+    });
 await builder.Build().RunAsync();
