@@ -23,8 +23,7 @@ public class EducatorAdditionalInfo
     public string Qualification { get; set; }
     
     public string AdditionalInfo { get; set; }
-
-    public string Image { get; set; }
+    public string? Image { get; set; }
     public List<EducatorDiscipline> EducatorDisciplines { get; set; }
     
     public string GetIMG()
