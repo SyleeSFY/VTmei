@@ -1,16 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-using Server.DLL.Context.ApplicationDbContext;
-using Server.DLL.Interfaces;
-using Server.DLL.Models.Entities;
-using Server.DLL.Models.Entities.Educator;
+using Server.DAL.Context.ApplicationDbContext;
+using Server.DAL.Interfaces;
+using Server.DAL.Models.Entities;
+using Server.DAL.Models.Entities.Educators;
+using Server.DAL.Interfaces;
 
-namespace Server.DLL.Repositories;
+namespace Server.DAL.Repositories;
 
 public class EducatorRepository : IEducatorRepository
 {
-    private readonly ApplicationDbContext _context;
+    private readonly EducatorDbContext _context;
 
-    public EducatorRepository(ApplicationDbContext context)
+    public EducatorRepository(EducatorDbContext context)
     {
         _context = context;
     }
@@ -27,5 +28,11 @@ public class EducatorRepository : IEducatorRepository
                 .ThenInclude(ai => ai.EducatorDisciplines)
                     .ThenInclude(ed => ed.Discipline)
             .FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task AddEducator(Educator educator)
+    {
+        await _context.Educators.AddAsync(educator);
+        await _context.SaveChangesAsync();
     }
 }

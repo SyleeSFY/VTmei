@@ -1,4 +1,4 @@
-namespace Server.DLL.Models.Entities.Educator;
+namespace Client.Core.Shared.Models;
 
 public class Discipline
 {

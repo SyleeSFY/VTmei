@@ -1,4 +1,4 @@
-namespace Server.DLL.Models.Entities.Educator;
+namespace Server.DAL.Models.Entities.Educators;
 
 public class Educator
 {

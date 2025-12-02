@@ -1,4 +1,6 @@
-namespace Server.DLL.Models.Entities.Educator;
+using System.Buffers.Text;
+
+namespace Server.DAL.Models.Entities.Educators;
 
 /// <summary>
 /// Класс с дополнительной информацией о преподавателе
@@ -27,7 +29,7 @@ public class EducatorAdditionalInfo
     //Доп инфа
     public string AdditionalInfo { get; set; }
 
-    public List<byte> Image { get; set; }
+    public byte[] Image { get; set; }
 }
 
 

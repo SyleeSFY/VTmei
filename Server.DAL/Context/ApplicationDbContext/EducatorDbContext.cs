@@ -1,16 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using Server.DLL.Models.Entities;
-using Server.DLL.Models.Entities.Educator;
+using Server.DAL.Models.Entities;
+using Server.DAL.Models.Entities.Educators;
 
-namespace Server.DLL.Context.ApplicationDbContext;
+namespace Server.DAL.Context.ApplicationDbContext;
 
 
-public class ApplicationDbContext : DbContext
+public class EducatorDbContext : DbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
-        : base(options)
-    {
-    }
+    public EducatorDbContext(DbContextOptions<EducatorDbContext> options) : base(options)
+    { }
     
     public DbSet<Educator> Educators { get; set; }
     public DbSet<EducatorAdditionalInfo> EducatorAdditionalInfos { get; set; }
@@ -27,7 +25,6 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Educator>(entity =>
         {
             entity.HasKey(e => e.Id);
-
             entity.HasOne(e => e.EducatorAdditionalInfo)
                 .WithOne()
                 .HasForeignKey<EducatorAdditionalInfo>(eai => eai.EducatorId);
@@ -37,11 +34,10 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<EducatorDiscipline>(entity =>
         {
             entity.HasKey(ed => ed.Id);
-
+            
             entity.HasOne<EducatorAdditionalInfo>()
                 .WithMany(eai => eai.EducatorDisciplines)
                 .HasForeignKey(ed => ed.EducatorAdditionalInfoId);
-
             entity.HasOne(ed => ed.Discipline)
                 .WithMany()
                 .HasForeignKey(ed => ed.DisciplineId);

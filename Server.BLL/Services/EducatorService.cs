@@ -1,7 +1,7 @@
 using Server.BLL.Services.Inrerfaces;
-using Server.DLL.Interfaces;
-using Server.DLL.Models.Entities;
-using Server.DLL.Models.Entities.Educator;
+using Server.DAL.Interfaces;
+using Server.DAL.Models.Entities;
+using Server.DAL.Models.Entities.Educators;
 
 namespace Server.BLL.Services;
 
@@ -22,6 +22,11 @@ public class EducatorService : IEducatorService
     public async Task<Educator> GetByIdAddInfoAsync(int id)
     {
         return await _educatorRepository.GetByIdAddInfoAsync(id);
+    }
+
+    public async Task AddEducator(Educator educator)
+    {
+        await _educatorRepository.AddEducator(educator);
     }
     
 }

@@ -1,4 +1,6 @@
 using System.Net.Http.Json;
+using Client.Core.Shared.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Client.Core.Pages;
 
@@ -28,53 +30,12 @@ public partial class Contacts
             StateHasChanged();
         }
     }
-    
-    public class Educator
+    private void GoToEducatorCard()
     {
-        public int Id { get; set; }
-        public string FullName { get; set; } = string.Empty;
-        public string? AcademicDegree { get; set; }
-        public EducatorAdditionalInfo EducatorAdditionalInfo { get; set; }
-
+        string id = "2";
+        if (educator != null)
+        {
+            Navigation.NavigateTo($"/EducatorCard/{id}");
+        }
     }
-    public class EducatorAdditionalInfo
-    {
-        public int Id { get; set; }
-    
-        public int EducatorId { get; set; }
-    
-        //Уровень образования
-        public string EducationLevel { get; set; } 
-    
-        //Ученое звание
-        public string AcademicTitle { get; set; }
-    
-        //Специальность или направление подготовки 
-        public string SpecialtyOrFieldOfStudy { get; set; }
-    
-        //Квалификация
-        public string Qualification { get; set; }
-        
-        //дисциплины
-        public List<EducatorDiscipline> EducatorDisciplines { get; set; }
-    
-        //Доп инфа
-        public string AdditionalInfo { get; set; }
-
-        public List<byte> Image { get; set; }
-    }
-    public class EducatorDiscipline
-    {
-        public int Id { get; set; }
-        public int EducatorAdditionalInfoId { get; set; } 
-        public int DisciplineId { get; set; }
-        public Discipline Discipline { get; set; }
-    }
-    
-    public class Discipline
-    {
-        public int Id { get; set; }
-        public string NameDiscipline { get; set; }
-    }
-
 }

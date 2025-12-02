@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Server.BLL.Services.Inrerfaces;
-using Server.DLL.Models.Entities;
-using Server.DLL.Models.Entities.Educator;
+using Server.DAL.Models.Entities;
+using Server.DAL.Models.Entities.Educators;
 
 namespace Server.Api.Controllers;
 
@@ -24,5 +24,11 @@ public class EducatorsController : ControllerBase
             return NotFound();
         
         return educator;
+    }
+    
+    [HttpPost("educators")]
+    public async Task AddEducator(Educator id)
+    {
+        await _educatorService.AddEducator(id);
     }
 }
