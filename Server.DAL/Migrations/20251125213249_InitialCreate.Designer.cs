@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Server.DLL.Context.ApplicationDbContext;
+using Server.DAL.Context.ApplicationDbContext;
 
 #nullable disable
 
 namespace Server.DLL.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(EducatorDbContext))]
     [Migration("20251125213249_InitialCreate")]
     partial class InitialCreate
     {

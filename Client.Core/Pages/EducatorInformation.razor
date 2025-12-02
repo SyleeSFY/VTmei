@@ -1,0 +1,23 @@
+@page "/EducatorCard/{id:int}"
+@inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
+
+@inject HttpClient Http
+
+@if (isLoading)
+{
+    <p>Загрузка...</p>
+}
+else if (educator != null)
+{
+    <div style="margin-top: 20px">
+        <p>ID: @educator.Id</p>
+        <p>ФИО: @educator.FullName</p>
+        <a href="/educators" class="btn btn-secondary">Назад к контактам</a>
+    </div>
+}
+else if (errorMessage != null)
+{
+    <p style="color: red;">Ошибка: @errorMessage</p>
+    <a href="/educators" class="btn btn-secondary">Назад</a>
+}

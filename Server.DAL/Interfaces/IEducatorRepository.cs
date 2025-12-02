@@ -1,10 +1,14 @@
-using Server.DLL.Models.Entities;
-using Server.DLL.Models.Entities.Educator;
+using Server.DAL.Models.Entities;
+using Server.DAL.Models.Entities.Educators;
 
-namespace Server.DLL.Interfaces;
+namespace Server.DAL.Interfaces;
 
 public interface IEducatorRepository
 {
+    Task<List<Educator>> GetEducatorsSimpleAsync();
+    Task<List<Educator>> GetEducatorsAsync();
+
+    Task<Educator> GetByIdSimpleAsync(int id);
     Task<Educator> GetByIdAsync(int id);
-    Task<Educator?> GetByIdAddInfoAsync(int id);
+    Task AddEducator(Educator edc);
 }

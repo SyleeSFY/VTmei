@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Server.DLL.Context.ApplicationDbContext;
-using Server.DLL.Interfaces;
-using Server.DLL.Repositories;
+using Server.DAL.Context.ApplicationDbContext;
+using Server.DAL.Interfaces;
+using Server.DAL.Repositories;
 using Server.BLL.Services;
 using Server.BLL.Services.Inrerfaces;
 
@@ -33,7 +33,7 @@ public class Program
             });
         });
         
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        builder.Services.AddDbContext<EducatorDbContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
         
         builder.Services.AddScoped<IEducatorRepository, EducatorRepository>();
